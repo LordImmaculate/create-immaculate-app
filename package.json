@@ -1,0 +1,20 @@
+{
+  "name": "create-immaculate-app",
+  "version": "1.0.2",
+  "description": "Scaffold a project from LordImmaculate's HeroUI Template",
+  "bin": {
+    "create-heroui": "./index.js"
+  },
+  "type": "module",
+  "keywords": [
+    "template",
+    "create",
+    "heroui",
+    "pnpm create"
+  ],
+  "author": "LordImmaculate",
+  "license": "MIT",
+  "devDependencies": {
+    "prompts": "^2.4.2"
+  }
+}
