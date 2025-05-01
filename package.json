@@ -1,6 +1,6 @@
 {
   "name": "create-immaculate-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Scaffold a project from LordImmaculate's HeroUI Template",
   "bin": {
     "create-heroui": "./src/index.js"

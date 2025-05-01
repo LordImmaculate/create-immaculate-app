@@ -59,7 +59,7 @@ const TEMPLATE_REPO = "https://github.com/lordimmaculate/heroui-template.git";
 
     if (git) {
       console.log("\nInitializing new git repository...");
-      execSync(`cd ${projectName} && git init`, { stdio: "inherit" });
+      execSync(`cd ${projectName} && git init && git add . && git commit -m "Initial Commit"`, { stdio: "inherit" });
     }
 
     switch (packageManager) {
