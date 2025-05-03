@@ -5,7 +5,10 @@ import { execSync } from "child_process";
 import path from "path";
 
 const projectNamePattern = /^[a-zA-Z0-9-]+$/;
-const TEMPLATE_REPO = "https://github.com/lordimmaculate/heroui-template.git";
+const TEMPLATES = {
+  "heroui": "https://github.com/lordimmaculate/heroui-template.git",
+  "heroui-authjs": "https://github.com/lordimmaculate/heroui-template-authjs.git"
+};
 
 (async () => {
   try {
@@ -20,6 +23,15 @@ const TEMPLATE_REPO = "https://github.com/lordimmaculate/heroui-template.git";
           projectNamePattern.test(val)
             ? true
             : "Project name should not contain special characters except hyphen (-)"
+      },
+      {
+        type: "select",
+        name: "template",
+        message: "Which template do you want to use?",
+        choices: [
+          { title: "HeroUI", value: "heroui" },
+          { title: "HeroUI + Auth.js", value: "heroui-authjs" }
+        ]
       },
       {
         type: "select",
@@ -44,7 +56,7 @@ const TEMPLATE_REPO = "https://github.com/lordimmaculate/heroui-template.git";
       }
     ]);
 
-    const { projectName, git, packageManager } = response;
+    const { projectName, template, git, packageManager } = response;
 
     if (!projectName) {
       console.log("\nOperation cancelled.");
@@ -52,6 +64,12 @@ const TEMPLATE_REPO = "https://github.com/lordimmaculate/heroui-template.git";
     }
 
     console.log("\nCloning template...");
+
+    const TEMPLATE_REPO = TEMPLATES[template];
+    if (!TEMPLATE_REPO) {
+      console.error("\nError: Template not found.");
+      process.exit(1);
+    }
 
     execSync(`git clone ${TEMPLATE_REPO} ${projectName}`, { stdio: "inherit" });
 
